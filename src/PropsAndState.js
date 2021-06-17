@@ -4,7 +4,8 @@ export const PropsAndState = ({ yourName }) => {
 
   return (
     <>
-      <h3>Welcome, {yourName} </h3>
+      <h3>Welcome, {yourName}! </h3>
+      
     </>
   )
 }

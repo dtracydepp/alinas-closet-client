@@ -8,7 +8,7 @@ export const PieceProvider = (props) => {
     const getPieces = () => {
         return fetch("http://localhost:8000/pieces", {
             headers:{
-                "Authorization": `Token ${localStorage.getItem("ac_token")}`
+                "Authorization": `Token ${localStorage.getItem("ac_user_id")}`
             }
         })
             .then(response => response.json())

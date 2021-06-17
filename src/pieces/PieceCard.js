@@ -1,7 +1,7 @@
 // *  PieceCard which renders individual item objects as HTML
 
 import React from "react"
-import "./Piece.css"
+
 
 
 export const PieceCard = ({ piece }) => ((
