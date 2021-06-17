@@ -15,11 +15,20 @@ export const PieceProvider = (props) => {
             .then(setPieces)
     }
 
-   
+    const getPiecesById = (id) => {
+        return fetch(`http://localhost:8000/pieces/${id}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem('ac_user_id')}`
+            }
+        })
+            .then(res => res.json())
+
+
+      }
     
    
     return (
-        <PieceContext.Provider value={{ pieces, getPieces, }} >
+        <PieceContext.Provider value={{ pieces, getPieces, getPiecesById }} >
             { props.children }
         </PieceContext.Provider>
     )

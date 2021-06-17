@@ -20,9 +20,9 @@ export const PieceList = () => {
   
   
     return (
-        <div className="items">
+        <div className="pieces">
             <h3>Pieces</h3>
-          {/* {console.log("ItemsList: Render", items)} */}
+          {/* {console.log("PiecesList: Render", pieces)} */}
           
            { 
             pieces.map((piece) => {
