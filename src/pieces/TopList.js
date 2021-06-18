@@ -25,11 +25,11 @@ export const TopList = () => {
     <div className="tops">
       <h3>Tops</h3>
       {
-        pieces.map(piece => {
+          
+        pieces.slice(0,2).map(piece => {
           if (piece.category.id === 1) {
             //   key and item become properties on the object passed in as in argument
             return <PieceCard key={piece.id} piece={piece} />
-
           }
         })
       }

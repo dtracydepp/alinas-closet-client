@@ -1,11 +1,12 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { Home } from "./Home"
+import { Home } from "./Home.js"
 import { PieceProvider } from "./pieces/PieceProvider.js"
 // import { PieceList } from "./pieces/PieceList.js"
-// import { TopList } from "./pieces/TopList.js"
-// import {BottomList} from "./pieces/BottomList.js"
+import { TopList } from "./pieces/TopList.js"
+import {BottomList} from "./pieces/BottomList.js"
 import { SetList } from "./pieces/SetList.js"
+import {Shop} from "./pieces/Shop.js"
 
 
 
@@ -25,19 +26,19 @@ export const ApplicationViews = () => {
                
 
             <Route path="/shop">
-              <SetList />
+              <Shop />
                </Route>    
 
             <Route path="/tops">
-               {/* <TopList /> */}
+               <TopList />
             </Route>
 
             <Route path="/bottoms">
-               {/* <BottomList /> */}
+               <BottomList />
                </Route>
 
             <Route path="/sets">
-               
+               <SetList />
                </Route>   
 
             {/* on Shop" "name of functions return buttons that pushes to "/shop" */}
