@@ -3,8 +3,10 @@ import { Route } from "react-router-dom"
 import { Home } from "./Home"
 import { PieceProvider } from "./pieces/PieceProvider.js"
 // import { PieceList } from "./pieces/PieceList.js"
-import { TopList } from "./pieces/TopList.js"
-import { CateogoryProvider } from "./categories/CategoryProvider.js"
+// import { TopList } from "./pieces/TopList.js"
+// import {BottomList} from "./pieces/BottomList.js"
+import { SetList } from "./pieces/SetList.js"
+
 
 
 export const ApplicationViews = () => {
@@ -20,10 +22,10 @@ export const ApplicationViews = () => {
 
             {/* Render the shoplist.js when http://localhost:8000/shop */}
             <PieceProvider>
-                <CateogoryProvider>
+               
 
             <Route path="/shop">
-               <TopList />
+              <SetList />
                </Route>    
 
             <Route path="/tops">
@@ -31,7 +33,7 @@ export const ApplicationViews = () => {
             </Route>
 
             <Route path="/bottoms">
-               
+               {/* <BottomList /> */}
                </Route>
 
             <Route path="/sets">
@@ -41,7 +43,7 @@ export const ApplicationViews = () => {
             {/* on Shop" "name of functions return buttons that pushes to "/shop" */}
             {/* <Route exact path="/shop" render={props => <"Name of Function" {...props} />}>
                 </Route> */}
-                </CateogoryProvider>
+               
            </PieceProvider>
         
         </>
