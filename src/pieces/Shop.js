@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 
 
 // // SortFriends function returns a Sort by Friends button and when clicked push to "/allfriends" page.
-export const Shop = (props) => {
+export const Shop = () => {
 
     //  // The useHistory hook tells React which route to visit. Tells React to render the location form component.
   const history = useHistory()
@@ -27,7 +27,7 @@ export const Shop = (props) => {
               <h2>Shop Tops</h2>
               <button className="shop_tops"
             // pushes the new entry into the history stack---redirecting to another route
-                onClick={() => props.history.push("/tops")}>
+                onClick={() => history.push("/tops")}>
                 View Tops
             </button>
 
@@ -47,7 +47,7 @@ export const Shop = (props) => {
               <h2>Shop Bottoms</h2>
               <button className="shop_bottoms"
             // pushes the new entry into the history stack---redirecting to another route
-                onClick={() => props.history.push("/bottoms")}>
+                onClick={() => history.push("/bottoms")}>
                 View Bottoms
             </button>
 
@@ -67,7 +67,7 @@ export const Shop = (props) => {
               <h2>Shop Sets</h2>
               <button className="shop_sets"
             // pushes the new entry into the history stack---redirecting to another route
-                onClick={() => props.history.push("/sets")}>
+                onClick={() => history.push("/sets")}>
                 View Sets
             </button>
 

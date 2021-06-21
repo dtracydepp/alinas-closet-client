@@ -26,7 +26,7 @@ export const TopList = () => {
       <h3>Tops</h3>
       {
           
-        pieces.slice(0,2).map(piece => {
+        pieces.map(piece => {
           if (piece.category.id === 1) {
             //   key and item become properties on the object passed in as in argument
             return <PieceCard key={piece.id} piece={piece} />

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { PieceContext } from "./PieceProvider.js"
 import { useParams, useHistory } from "react-router-dom"
 
-export const PieceDetail = (props) => {
+export const PieceDetail = () => {
     // Need the getItemById and deleteItem data stored from fetch to use in this comp
   const { getPiecesById } = useContext(PieceContext)
 
@@ -29,6 +29,7 @@ export const PieceDetail = (props) => {
   return (
     <section className="piece">
       <h1> About This Piece</h1>
+      <img src= {piece.imageurl} alt=""/>
       <h3 className="piece__name">{piece.piece_name}</h3>
       <div className="piece__price">Price: {piece.price}</div>
       <div className="piece__size">Size: {piece.size}</div>
@@ -41,14 +42,14 @@ export const PieceDetail = (props) => {
     <div>
       <button className="add__look__btn"
             // pushes the new entry into the history stack---redirecting to another route
-                onClick={() => props.history.push("/looks")}>
+                onClick={() => history.push("/looks")}>
                 Add to Look
             </button> 
     </div>  
     <div>
       <button className="add__list__btn"
             // pushes the new entry into the history stack---redirecting to another route
-                onClick={() => props.history.push("/lists")}>
+                onClick={() => history.push("/lists")}>
                 Add to List
             </button> 
     </div>  

@@ -23,12 +23,12 @@ export const ApplicationViews = () => {
              
 
             {/* Render the shoplist.js when http://localhost:8000/shop */}
-            <PieceProvider>
+        <PieceProvider>
                
 
             <Route path="/shop">
               <Shop />
-               </Route>    
+            </Route>    
 
             <Route path="/tops">
                <TopList />
@@ -36,21 +36,27 @@ export const ApplicationViews = () => {
 
             <Route path="/bottoms">
                <BottomList />
-               </Route>
+            </Route>
 
             <Route path="/sets">
                <SetList />
-               </Route>   
+            </Route>   
 
-             <Route exact path="/pieces/detail/:pieceId(\d+)">
+            <Route path="/looks">
+               {/* <SetList /> */}
+            </Route>  
+
+            <Route path="/lists">
+               {/* <SetList /> */}
+            </Route>  
+
+            <Route exact path="/pieces/detail/:pieceId(\d+)">
                 <PieceDetail />
-                </Route>
+             </Route>
 
-            {/* on Shop" "name of functions return buttons that pushes to "/shop" */}
-            {/* <Route exact path="/shop" render={props => <"Name of Function" {...props} />}>
-                </Route> */}
-               
-           </PieceProvider>
+
+
+        </PieceProvider>
         
         </>
     )

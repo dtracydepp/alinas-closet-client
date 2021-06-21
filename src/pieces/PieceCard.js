@@ -12,7 +12,7 @@ export const PieceCard = ({ piece }) => ((
             {piece.piece_name}
             </Link>
            </h3> 
-        <img scr= {piece.imageurl} alt=""/>
+        <img src= {piece.imageurl} alt=""/>
     </section>
 ) 
 )
