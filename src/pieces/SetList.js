@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react"
-import { PieceContext } from "./PieceProvider.js"
+import { PieceContext } from "./PieceProvider"
 import { PieceCard } from "./PieceCard.js"
 import { useHistory } from "react-router-dom"
 

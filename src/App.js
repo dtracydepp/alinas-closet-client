@@ -1,8 +1,8 @@
 import { Route, Redirect } from "react-router-dom"
 import { Login } from "./auth/Login.js"
 import { Register } from "./auth/Register.js"
-import {ApplicationViews} from "./ApplicationViews"
-import {NavBar} from "./nav/NavBar.js"
+import { ApplicationViews } from "./ApplicationViews.js"
+import { NavBar } from "./nav/NavBar.js"
 import './App.css';
 
 export const App = () => (
@@ -13,6 +13,7 @@ export const App = () => (
                   <NavBar />
                   <ApplicationViews />
               </>
+            
           } else {
               return <Redirect to="/login" />
           }

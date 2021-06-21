@@ -15,8 +15,8 @@ export const PieceProvider = (props) => {
             .then(setPieces)
     }
 
-    const getPiecesById = (id) => {
-        return fetch(`http://localhost:8000/pieces/${id}`, {
+    const getPiecesById = (pieceId) => {
+        return fetch(`http://localhost:8000/pieces/${pieceId}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem('ac_user_id')}`
             }
