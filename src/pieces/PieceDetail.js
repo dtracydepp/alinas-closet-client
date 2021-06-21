@@ -36,7 +36,7 @@ export const PieceDetail = () => {
       <div className="piece__retailer">Retailer: {piece.retailer?.retailer_name}</div>
       
       <div>
-      <button className="save__btn" onClick={() => { history.push(`/pieces/detail/${piece.id}`) }}>
+      <button className="save__btn" onClick={() => { history.push("/saved") }}>
         Save
           </button>
     <div>

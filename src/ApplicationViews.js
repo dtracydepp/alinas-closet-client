@@ -8,6 +8,8 @@ import {BottomList} from "./pieces/BottomList.js"
 import { SetList } from "./pieces/SetList.js"
 import {Shop} from "./pieces/Shop.js"
 import { PieceDetail } from "./pieces/PieceDetail.js"
+import { SavedPieceList } from "./pieces/SavedPieces.js"
+import { UserPieceProvider } from "./users/UserPieceProvider.js"
 
 
 
@@ -24,6 +26,7 @@ export const ApplicationViews = () => {
 
             {/* Render the shoplist.js when http://localhost:8000/shop */}
         <PieceProvider>
+           <UserPieceProvider>
                
 
             <Route path="/shop">
@@ -48,6 +51,10 @@ export const ApplicationViews = () => {
 
             <Route path="/lists">
                {/* <SetList /> */}
+            </Route> 
+
+            <Route path="/saved">
+               <SavedPieceList />
             </Route>  
 
             <Route exact path="/pieces/detail/:pieceId(\d+)">
@@ -55,7 +62,7 @@ export const ApplicationViews = () => {
              </Route>
 
 
-
+             </UserPieceProvider>
         </PieceProvider>
         
         </>
