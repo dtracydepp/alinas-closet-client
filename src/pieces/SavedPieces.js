@@ -27,7 +27,7 @@ export const SavedPieceList = ( props ) => {
             {
                 // mapping through all and filtering out saved pieces by user
             currentUserSavedPieces.map(piece =>{
-                {console.log(piece)}
+                
               return  <>
                 {/* props.history.push changing the url when the button is clicked and passing the id of the piece to the url */}
              <PieceCard key={piece.id} piece={piece} />
