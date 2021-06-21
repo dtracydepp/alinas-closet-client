@@ -7,6 +7,7 @@ import { TopList } from "./pieces/TopList.js"
 import {BottomList} from "./pieces/BottomList.js"
 import { SetList } from "./pieces/SetList.js"
 import {Shop} from "./pieces/Shop.js"
+import { PieceDetail } from "./pieces/PieceDetail.js"
 
 
 
@@ -40,6 +41,10 @@ export const ApplicationViews = () => {
             <Route path="/sets">
                <SetList />
                </Route>   
+
+             <Route exact path="/pieces/detail/:pieceId(\d+)">
+                <PieceDetail />
+                </Route>
 
             {/* on Shop" "name of functions return buttons that pushes to "/shop" */}
             {/* <Route exact path="/shop" render={props => <"Name of Function" {...props} />}>
