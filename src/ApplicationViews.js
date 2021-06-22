@@ -10,6 +10,9 @@ import {Shop} from "./pieces/Shop.js"
 import { PieceDetail } from "./pieces/PieceDetail.js"
 import { SavedPieceList } from "./pieces/SavedPieces.js"
 import { UserPieceProvider } from "./users/UserPieceProvider.js"
+import { ShoppingListForm } from "./lists/ListForm.js"
+import { LookForm } from "./looks/LookForm.js"
+
 
 
 
@@ -46,11 +49,11 @@ export const ApplicationViews = () => {
             </Route>   
 
             <Route path="/looks">
-               {/* <SetList /> */}
+              <LookForm/>
             </Route>  
 
             <Route path="/lists">
-               {/* <SetList /> */}
+              <ShoppingListForm />
             </Route> 
 
             <Route path="/saved">
