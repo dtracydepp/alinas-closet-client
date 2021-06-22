@@ -5,7 +5,7 @@ import { LookContext } from "../looks/LookProvider.js"
 
 export const LookForm = () => {
 
-    const { getLookById, updateLook } = useContext(LookContext)
+    const { createLook, getLookById, updateLook } = useContext(LookContext)
 
     const [looks, setLooks] = useState({
         look_name: "",
@@ -37,12 +37,12 @@ export const LookForm = () => {
                 look_name: looks.look_name,
             })
           .then(() => history.push("/looks"))
-        // } else {
+        } else {
             
-        //     createLook({
-        //         look_name: looks.look_name,
-        //     })
-        //     .then(() => history.push("/looks"))
+            createLook({
+                look_name: looks.look_name,
+            })
+            .then(() => history.push("/looks"))
             }
         }
     }
