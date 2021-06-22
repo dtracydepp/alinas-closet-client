@@ -1,100 +1,109 @@
-import React, { useState, useContext, useEffect } from "react"
-import { useHistory, useParams } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from "react"
 import { LookContext } from "../looks/LookProvider.js"
+import { useHistory, useParams } from 'react-router-dom'
 
 
 export const LookForm = () => {
+    const history = useHistory()
+    const { getLooks,createLook, deleteLook,getLookById, updateLook  } = useContext(LookContext)
+    const { lookId = null } = useParams()
 
-    const { createLook, getLookById, updateLook } = useContext(LookContext)
-
-    const [looks, setLooks] = useState({
+    /*
+        Since the input fields are bound to the values of
+        the properties of this state variable, you need to
+        provide some default values.
+    */
+    const [currentLook, setCurrentLook] = useState({
         look_name: "",
-    });
+        note: "",
+    })
 
-    const [isLoading, setIsLoading] = useState(true);
-    const history = useHistory();
-    const { lookId } = useParams();
-
-    const handleControlledInputChange = (event) => {
-        const newLook = { ...looks }
-        
-        newLook[event.target.id] = event.target.value
-       
-        setLooks(newLook)
-      }
-
-    const handleSaveLook = () => {
-
-        if (looks.look_name === "") {
-            window.alert("Please name your look!")
-          } else {
-            setIsLoading(true);
-  
-        if (lookId){
-
-            updateLook({
-                id: looks.id,
-                look_name: looks.look_name,
-            })
-          .then(() => history.push("/looks"))
-        } else {
-            
-            createLook({
-                look_name: looks.look_name,
-            })
-            .then(() => history.push("/looks"))
-            }
-        }
-    }
+    /*
+        Get looks on initialization so that the <select>
+        element presents look choices to the user.
+    */
+    useEffect(() => {
+        getLooks()
+    }, [])
 
     useEffect(() => {
-        if (lookId) {
-          getLookById(lookId)
-          .then(looks => {
-              setLooks(looks)
-              setIsLoading(false)
-          })
-        } else {
-          setIsLoading(false)
-      }
-  }, [])
+        if (lookId != null) {
+            getLooks(lookId).then(setCurrentLook)
+        }
+    }, [])
 
-  return (
-    <form className="lookForm">
+
+
+
+    const changeLookNameState = (event) => {
+        const newLookState = { ...currentLook }
+        newLookState.look_name = event.target.value
+        setCurrentLook(newLookState)
+    }
+
+    const changeLookNoteState = (event) => {
+        const newLookState = { ...currentLook }
+        newLookState.note = event.target.value
+        setCurrentLook(newLookState)
+    }
+
+    
+
+    return (
+        <form className="lookForm">
             <h2 className="lookForm__title">Create a New Look</h2>
+            
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="lookId">Look Name: </label>
-                    <select name="lookId" className="form-control"
-                        value={ looks.lookId }
-                        onChange={ handleControlledInputChange }>
-                        <option value="0">Select a Look...</option>
+                <label htmlFor="lookId">Name of Look: </label>
+                <input type="text" id="look" onChange={changeLookNameState} required autoFocus className="form-control" placeholder="Look Name" value={currentLook.look_name}/>
+                <p>Or</p>
+                <select name="lookId" onChange={changeLookNameState} value={currentLook.look_name}>
+                        <option value="0">Select a look</option>
                         {
-                            looks.map(look => (
-                                <option key={look.id} value={look.id}>{looks.look_name}</option>
-                            ))
+                            currentLook.map(cl =>{
+                                return <option key={cl.id} value={cl.id}>{cl.look_name}</option>
+                             })
                         }
                     </select>
+                    
+                   
                 </div>
             </fieldset>
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="note">Note: </label>
-                    <input name="note" type="text" onChange={handleSaveLook} defaultValue={looks.note}/>
+                    <label htmlFor="note">: </label>
+                    <input type="text" name="note" required autoFocus className="form-control"
+                        value={currentLook.note}
+                        onChange={changeLookNoteState}
+                    />
                 </div>
             </fieldset>
 
-        <button className="btn btn-primary"
-            disabled={isLoading}
-            onClick={event => {
-                event.preventDefault()
-                handleSaveLook()
-            }}>
-            {lookId ? "Save Look" : "Add New Look"}</button>
-        {lookId ? <button className="btn btn-cancel"
-            onClick={() => { history.push("/looks") }}>Cancel
-            </button> : ""}
-    </form>
-)
+           
+
+            <button type="submit"
+                onClick={evt => {
+                    // Prevent form from being submitted
+                    evt.preventDefault()
+
+                    const look = {
+                        look_name: currentLook.look_name,
+                        note: currentLook.note,
+                        
+                    }
+
+                    if (lookId) {
+                        look.id = lookId
+                        updateLook(look).then(() => history.push('/looks'))
+                    } else {
+                        // Send POST request to your API
+                        createLook(look)
+                            .then(() => history.push("/looks"))
+                    }
+                }}
+                className="btn btn-primary">Create Look</button>
+        </form>
+    )
 }

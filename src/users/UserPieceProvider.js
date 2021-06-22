@@ -15,8 +15,8 @@ export const UserPieceProvider = (props) => {
             .then(setUserPieces)
     }
 
-    const getUserPiecesById = (userId) => {
-        return fetch(`http://localhost:8000/userpieces/${userId}`, {
+    const getUserPiecesById = (id) => {
+        return fetch(`http://localhost:8000/userpieces/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem('ac_user_id')}`
             }
@@ -26,9 +26,30 @@ export const UserPieceProvider = (props) => {
 
       }
     
+      const addUserPiece = (userpiece) => {
+        return fetch("http://localhost:8000/userpieces", {
+            method: "POST",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("ac_user_id")}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userpiece)
+        })
+    }
+
+
+    const deleteSavedPiece = userpieceId => {
+        return fetch(`http://localhost:8000/userpieces/${userpieceId}`, {
+            method: "DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("ac_user_id")}`
+            }
+        })
+            .then(getUserPieces)
+    }
    
     return (
-        <UserPieceContext.Provider value={{ userpieces, getUserPieces, getUserPiecesById }} >
+        <UserPieceContext.Provider value={{ userpieces, getUserPieces, getUserPiecesById, addUserPiece, deleteSavedPiece}} >
             { props.children }
         </UserPieceContext.Provider>
     )

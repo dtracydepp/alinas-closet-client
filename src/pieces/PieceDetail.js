@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react"
+import { UserPieceContext } from "../users/UserPieceProvider.js"
 import { PieceContext } from "./PieceProvider.js"
 import { useParams, useHistory } from "react-router-dom"
 
 export const PieceDetail = () => {
-    // Need the getItemById and deleteItem data stored from fetch to use in this comp
-  const { getPiecesById } = useContext(PieceContext)
 
+    // Need the getItemById and deleteItem data stored from fetch to use in this comp
+  const {  addUserPiece } = useContext(UserPieceContext)  
+  const { getPiecesById } = useContext(PieceContext)
 // useState will hold and set the state of the piecess object. Pieces will hold the data, setPieces will modify the state of the pieces object when invoked.
   const [piece, setPieces] = useState({})
 
@@ -19,11 +21,26 @@ export const PieceDetail = () => {
   useEffect(() => {
     getPiecesById(pieceId)
       .then((response) => {
-        // setItems update function invoked to update state.
+        // setPieces update function invoked to update state.
         setPieces(response)
       })
   }, [])
 
+  const handleClickSavePiece = (event) => {
+    const userPiece = {
+    "note":"TEST",
+    "is_favorite": false,
+    "piece": parseInt(pieceId),
+    "user": parseInt(localStorage.getItem("user_id")),
+
+
+    }
+      //invoke addNote passing note and itemId arguments. So the new note added will be specific to the item selected
+      //once complete, change the url and display the friend list
+      addUserPiece(userPiece)
+      // pushes the new entry into the history stack---redirecting to another route
+      .then(() => history.push("/saved"))
+    }
 
   // returns piece details with buttons
   return (
@@ -34,11 +51,12 @@ export const PieceDetail = () => {
       <div className="piece__price">Price: {piece.price}</div>
       <div className="piece__size">Size: {piece.size}</div>
       <div className="piece__retailer">Retailer: {piece.retailer?.retailer_name}</div>
-      
+      {/* POST method in piece provider, handleSave function */}
       <div>
-      <button className="save__btn" onClick={() => { history.push("/saved") }}>
+      <button className="save__btn" onClick={()=>handleClickSavePiece()}>
         Save
           </button>
+          
     <div>
       <button className="add__look__btn"
             // pushes the new entry into the history stack---redirecting to another route
