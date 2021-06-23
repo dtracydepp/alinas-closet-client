@@ -8,6 +8,13 @@ import {BottomList} from "./pieces/BottomList.js"
 import { SetList } from "./pieces/SetList.js"
 import {Shop} from "./pieces/Shop.js"
 import { PieceDetail } from "./pieces/PieceDetail.js"
+import { SavedPieceList } from "./pieces/SavedPieces.js"
+import { UserPieceProvider } from "./users/UserPieceProvider.js"
+// import { ShoppingListForm } from "./lists/ListForm.js"
+// import { LookForm } from "./looks/LookForm.js"
+// import { LookList} from "./looks/LookList.js"
+// import { ShoppingList } from "./lists/ShoppingList.js"
+
 
 
 
@@ -24,6 +31,7 @@ export const ApplicationViews = () => {
 
             {/* Render the shoplist.js when http://localhost:8000/shop */}
         <PieceProvider>
+           <UserPieceProvider>
                
 
             <Route path="/shop">
@@ -42,12 +50,17 @@ export const ApplicationViews = () => {
                <SetList />
             </Route>   
 
-            <Route path="/looks">
-               {/* <SetList /> */}
-            </Route>  
+           
+            {/* <Route path="/looks">
+              <LookList/>
+            </Route> */}
 
-            <Route path="/lists">
-               {/* <SetList /> */}
+            {/* <Route path="/lists">
+              <ShoppingList />
+            </Route>  */}
+
+            <Route path="/saved">
+               <SavedPieceList />
             </Route>  
 
             <Route exact path="/pieces/detail/:pieceId(\d+)">
@@ -55,7 +68,7 @@ export const ApplicationViews = () => {
              </Route>
 
 
-
+             </UserPieceProvider>
         </PieceProvider>
         
         </>
