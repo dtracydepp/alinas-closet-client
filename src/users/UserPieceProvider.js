@@ -4,7 +4,6 @@ export const UserPieceContext = React.createContext()
 
 export const UserPieceProvider = (props) => {
     const [ userpieces, setUserPieces ] = useState([])
-    const [ note, setNote] = useState([])
 
     const getUserPieces = () => {
         return fetch("http://localhost:8000/userpieces", {
@@ -27,6 +26,7 @@ export const UserPieceProvider = (props) => {
 
       }
     
+    
       const addUserPiece = (userpiece) => {
         return fetch("http://localhost:8000/userpieces", {
             method: "POST",
@@ -36,30 +36,6 @@ export const UserPieceProvider = (props) => {
             },
             body: JSON.stringify(userpiece)
         })
-    }
-
-
-    const deleteSavedPiece = userpieceId => {
-        return fetch(`http://localhost:8000/userpieces/${userpieceId}`, {
-            method: "DELETE",
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("ac_user_id")}`
-            }
-        })
-            .then(getUserPieces)
-    }
-   
-    const addNote = (userpiece) => {
-        return fetch(`http://localhost:8000/userpieces/${userpiece.id}`, {
-            method: "PUT",
-            headers: {
-                "Authorization": `Token ${localStorage.getItem('ac_user_id')}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userpiece)
-        })
-            .then(res => res.json())
-            .then(setNote)
     }
 
     const updateUserPiece = userpiece => {
@@ -74,12 +50,18 @@ export const UserPieceProvider = (props) => {
             .then(getUserPieces)
     }
 
-
-
-
-
+    const deleteSavedPiece = userpieceId => {
+        return fetch(`http://localhost:8000/userpieces/${userpieceId}`, {
+            method: "DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("ac_user_id")}`
+            }
+        })
+            .then(getUserPieces)
+    }
+   
     return (
-        <UserPieceContext.Provider value={{ userpieces, getUserPieces, getUserPiecesById, addUserPiece, deleteSavedPiece,addNote, updateUserPiece, note}} >
+        <UserPieceContext.Provider value={{ userpieces, getUserPieces, getUserPiecesById, addUserPiece, deleteSavedPiece, updateUserPiece}} >
             { props.children }
         </UserPieceContext.Provider>
     )
