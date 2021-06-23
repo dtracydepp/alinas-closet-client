@@ -28,7 +28,7 @@ export const PieceDetail = () => {
 
   const handleClickSavePiece = (event) => {
     const userPiece = {
-    "note":"TEST",
+    "note":"",
     "is_favorite": false,
     "piece": parseInt(pieceId),
     "user": parseInt(localStorage.getItem("user_id")),
@@ -48,30 +48,15 @@ export const PieceDetail = () => {
       <h1> About This Piece</h1>
       <img src= {piece.imageurl} alt=""/>
       <h3 className="piece__name">{piece.piece_name}</h3>
-      <div className="piece__price">Price: {piece.price}</div>
+      <div className="piece__price">Price: ${piece.price}</div>
       <div className="piece__size">Size: {piece.size}</div>
       <div className="piece__retailer">Retailer: {piece.retailer?.retailer_name}</div>
       {/* POST method in piece provider, handleSave function */}
       <div>
       <button className="save__btn" onClick={()=>handleClickSavePiece()}>
-        Save
+        Save Piece
           </button>
-          
-    <div>
-      <button className="add__look__btn"
-            // pushes the new entry into the history stack---redirecting to another route
-                onClick={() => history.push("/looks")}>
-                Add to Look
-            </button> 
-    </div>  
-    <div>
-      <button className="add__list__btn"
-            // pushes the new entry into the history stack---redirecting to another route
-                onClick={() => history.push("/lists")}>
-                Add to List
-            </button> 
-    </div>  
-      </div>
+    </div>    
     </section>
   )
 }
