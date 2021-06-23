@@ -48,8 +48,36 @@ export const UserPieceProvider = (props) => {
             .then(getUserPieces)
     }
    
+    const addNote = (userpiece) => {
+        return fetch('http://localhost:8000/userpieces', {
+            method: "PUT",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem('ac_user_id')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userpiece)
+        })
+            .then(res => res.json())
+    }
+
+    const updateUserPiece = userpiece => {
+        return fetch(`http://localhost:8000/userpieces/${userpiece.id}`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem('ac_user_id')}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userpiece)
+        })
+            .then(getUserPieces)
+    }
+
+
+
+
+
     return (
-        <UserPieceContext.Provider value={{ userpieces, getUserPieces, getUserPiecesById, addUserPiece, deleteSavedPiece}} >
+        <UserPieceContext.Provider value={{ userpieces, getUserPieces, getUserPiecesById, addUserPiece, deleteSavedPiece,addNote, updateUserPiece}} >
             { props.children }
         </UserPieceContext.Provider>
     )

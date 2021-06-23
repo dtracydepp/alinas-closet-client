@@ -54,24 +54,9 @@ export const PieceDetail = () => {
       {/* POST method in piece provider, handleSave function */}
       <div>
       <button className="save__btn" onClick={()=>handleClickSavePiece()}>
-        Save
+        Save Piece
           </button>
-          
-    <div>
-      <button className="add__look__btn"
-            // pushes the new entry into the history stack---redirecting to another route
-                onClick={() => history.push("/looks")}>
-                Add to Look
-            </button> 
-    </div>  
-    <div>
-      <button className="add__list__btn"
-            // pushes the new entry into the history stack---redirecting to another route
-                onClick={() => history.push("/lists")}>
-                Add to List
-            </button> 
-    </div>  
-      </div>
+    </div>    
     </section>
   )
 }
