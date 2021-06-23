@@ -4,6 +4,7 @@ export const UserPieceContext = React.createContext()
 
 export const UserPieceProvider = (props) => {
     const [ userpieces, setUserPieces ] = useState([])
+    const [ note, setNote] = useState([])
 
     const getUserPieces = () => {
         return fetch("http://localhost:8000/userpieces", {
@@ -49,7 +50,7 @@ export const UserPieceProvider = (props) => {
     }
    
     const addNote = (userpiece) => {
-        return fetch('http://localhost:8000/userpieces', {
+        return fetch(`http://localhost:8000/userpieces/${userpiece.id}`, {
             method: "PUT",
             headers: {
                 "Authorization": `Token ${localStorage.getItem('ac_user_id')}`,
@@ -58,6 +59,7 @@ export const UserPieceProvider = (props) => {
             body: JSON.stringify(userpiece)
         })
             .then(res => res.json())
+            .then(setNote)
     }
 
     const updateUserPiece = userpiece => {
@@ -77,7 +79,7 @@ export const UserPieceProvider = (props) => {
 
 
     return (
-        <UserPieceContext.Provider value={{ userpieces, getUserPieces, getUserPiecesById, addUserPiece, deleteSavedPiece,addNote, updateUserPiece}} >
+        <UserPieceContext.Provider value={{ userpieces, getUserPieces, getUserPiecesById, addUserPiece, deleteSavedPiece,addNote, updateUserPiece, note}} >
             { props.children }
         </UserPieceContext.Provider>
     )

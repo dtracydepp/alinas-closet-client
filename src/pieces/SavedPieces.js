@@ -36,14 +36,13 @@ export const SavedPieceList = () => {
         return (
 
             <div className="savedpieces">
-                <h1>Saved Pieces</h1>
 
                 {/* props.history.push changing the url when the button is clicked and passing the id of the piece to the url */}
                 <PieceCard key={up.piece.id} piece={up.piece} />
 
                 <div>
                     <button className="note__btn" onClick={() => { history.push(`/userpieces/create/${up.id}`) }}>
-                        Add Note </button>
+                        Add/Edit Note </button>
                 </div>
 
                 <div>
@@ -59,7 +58,8 @@ export const SavedPieceList = () => {
 
         )
     })
-    return (currentUserSavedPieces)
+    return (<div> <h1>Saved Pieces</h1>
+        {currentUserSavedPieces}</div>)
 
         
 

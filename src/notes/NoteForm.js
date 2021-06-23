@@ -3,7 +3,7 @@ import { UserPieceContext } from "../users/UserPieceProvider.js"
 import { useHistory, useParams } from 'react-router-dom';
 
 export const NoteForm = () => {
-  const { addNote, updateUserPiece, getUserPieces, getUserPiecesById } = useContext(UserPieceContext)
+  const { addNote, updateUserPiece, getUserPieces, getUserPiecesById, note } = useContext(UserPieceContext)
 
   //for edit, hold on to state of userpieces in this view
 
@@ -50,7 +50,7 @@ export const NoteForm = () => {
     const newUserPiece = { ...userpieces }
     let selectedVal = event.target.value
     // forms always provide values as strings. But we want to save the ids as numbers. 
-    if (event.target.id.includes("Id")) {
+    if (event.target.id.includes("userpieceId")) {
       selectedVal = parseInt(selectedVal)
     }
     /* UserPiece is an object with properties.
@@ -78,20 +78,25 @@ export const NoteForm = () => {
       //disable the button - no extra clicks
       setIsLoading(true);
       // This is how we check for whether the form is being used for editing or creating. If the URL that got us here has an id number in it, we know we want to update an existing record of a category
-
+      
       {
         //PUT - add
         addNote({
-          note: userpieces.note
+        note: userpieces.note, 
+        is_favorite: userpieces.is_favorite,
+        piece: userpieces.piece.pieceId,
+        user: userpieces.userId,
+        id: userpieces.id,
+        }
 
-        })
+        )
           .then(() => history.push("/saved"))
         //   not sure abt this path
       }
     }
   }
 
-
+console.log(userpieces)
 
   return (
     <form className="note__form">
