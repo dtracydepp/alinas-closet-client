@@ -1,21 +1,29 @@
-import React, { useContext, useEffect } from "react"
-import { useHistory } from "react-router-dom"
+import React, { useContext, useEffect, useState } from "react"
 import { UserPieceContext } from "../users/UserPieceProvider.js"
-import { PieceCard } from "./PieceCard.js"
-
+import { PieceContext } from "./PieceProvider.js" 
+import {PieceCard} from "./PieceCard.js"
+import { useParams, useHistory } from "react-router-dom"
 
 
 export const SavedPieceList = () => {
 
-    const { userpieces, getUserPieces, deleteSavedPiece} = useContext(UserPieceContext)
+    const { userpieces, getUserPieces, getUserPiecesById, deleteSavedPiece, updateUserPiece} = useContext(UserPieceContext)
+    const { getPiecesById } = useContext(PieceContext)
     // not sure if I need pieces, getPieces or userpieces or both??
     const history = useHistory()
+    const [piece, setPieces] = useState({})
 
-    // Initialization effect hook..
-    useEffect(() => {
-        getUserPieces()
+    // useParams hook that allows me to extract value of the parameter from the URL, here I need the value of pieceId
+  const { pieceId } = useParams();
 
-    }, [])
+  
+  useEffect(() => {
+    getUserPieces(pieceId)
+      .then((response) => {
+        // setPieces update function invoked to update state.
+        setPieces(response)
+      })
+  }, [])
 
     // function to delete userpiece object
     const handleDelete = (userpiecesId) => {
@@ -26,6 +34,27 @@ export const SavedPieceList = () => {
                 history.push("/saved")
             })
     }
+
+    // function to fav userpiece
+
+    const handleFav = (userpiecesId,piece) => {
+        if (userpiecesId) {
+          //PUT - update
+          updateUserPiece({
+                "note":"",
+                "id": userpiecesId,
+                "is_favorite": true,
+                "piece": piece,
+                "user": parseInt(localStorage.getItem("user_id"))
+    
+          })
+            .then(() => history.push("/saved"))
+        
+                 
+            }
+        
+    }
+
     // mapping through all and filtering out saved userpieces
     // returning all of the saved pieces of the current user
     const currentUserSavedPieces = userpieces.map(up => {
@@ -41,6 +70,12 @@ export const SavedPieceList = () => {
                 <PieceCard key={up.piece.id} piece={up.piece} />
 
                 <div>
+                    <button className="fav__btn" onClick={()=>handleFav(up.id,up.piece.id)}> 
+                        Favorite
+                    </button>
+                </div>
+
+                <div>
                     <button className="note__btn" onClick={() => { history.push(`/userpieces/create/${up.id}`) }}>
                         Add/Edit Note </button>
                 </div>
@@ -52,7 +87,8 @@ export const SavedPieceList = () => {
                 </div>
                 <section className="savedpieces__notes">
                 <div className="userpiece__note">Note:{up.note}</div>
-                <div className="userpiece__favorite">Favorite: {up.is_favorite}</div>
+                
+
                 </section>
             </div>
 
