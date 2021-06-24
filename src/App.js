@@ -3,6 +3,9 @@ import { Login } from "./auth/Login.js"
 import { Register } from "./auth/Register.js"
 import { ApplicationViews } from "./ApplicationViews.js"
 import { NavBar } from "./nav/NavBar.js"
+import { LogOut } from "./auth/Logout.js"
+
+
 import './App.css';
 
 export const App = () => (
@@ -35,5 +38,7 @@ export const App = () => (
               return <Register />
           }
       }} />
+
+      <Route path="/logout" render={LogOut}/>
   </>
 )
