@@ -3,6 +3,7 @@ import { UserPieceContext } from "../users/UserPieceProvider.js"
 import { PieceContext } from "./PieceProvider.js" 
 import {PieceCard} from "./PieceCard.js"
 import { useParams, useHistory } from "react-router-dom"
+import "./Pieces.css"
 
 
 export const SavedPieceList = () => {
@@ -94,7 +95,7 @@ export const SavedPieceList = () => {
 
         )
     })
-    return (<div> <h1>Saved Pieces</h1>
+    return (<div className="pieces__saved"> <h1>Saved Pieces{currentUserSavedPieces.count}</h1>
         {currentUserSavedPieces}</div>)
 
         

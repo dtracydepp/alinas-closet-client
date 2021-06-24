@@ -10,6 +10,7 @@ export const App = () => (
       <Route render={() => {
           if (localStorage.getItem("ac_user_id")) {
               return <>
+                <img className="logo" src="AlinasClosetLogo.png" alt="DWMS-Logo"/>
                   <NavBar />
                   <ApplicationViews />
               </>
