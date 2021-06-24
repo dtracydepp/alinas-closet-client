@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { UserPieceContext } from "../users/UserPieceProvider.js"
 import { useHistory, useParams } from 'react-router-dom';
+import "./Notes.css"
 
 export const NoteForm = () => {
   const { addNote, updateUserPiece, getUserPieces, getUserPiecesById, note } = useContext(UserPieceContext)

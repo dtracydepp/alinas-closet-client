@@ -50,6 +50,19 @@ export const UserPieceProvider = (props) => {
             .then(getUserPieces)
     }
 
+    const favUserPiece = userpiece => {
+        return fetch(`http://localhost:8000/userpieces/${userpiece.id}`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem('ac_user_id')}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userpiece)
+        })
+            .then(getUserPieces)
+    }
+
+
     const deleteSavedPiece = userpieceId => {
         return fetch(`http://localhost:8000/userpieces/${userpieceId}`, {
             method: "DELETE",
@@ -61,7 +74,7 @@ export const UserPieceProvider = (props) => {
     }
    
     return (
-        <UserPieceContext.Provider value={{ userpieces, getUserPieces, getUserPiecesById, addUserPiece, deleteSavedPiece, updateUserPiece}} >
+        <UserPieceContext.Provider value={{ userpieces, getUserPieces, getUserPiecesById, addUserPiece, deleteSavedPiece, updateUserPiece, favUserPiece}} >
             { props.children }
         </UserPieceContext.Provider>
     )

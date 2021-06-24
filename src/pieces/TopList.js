@@ -23,7 +23,7 @@ export const TopList = () => {
 
   return (
     <div className="tops">
-      <h3>Tops</h3>
+      <h2>Tops</h2>
       {
           
         pieces.map(piece => {

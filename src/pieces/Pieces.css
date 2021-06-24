@@ -1,0 +1,66 @@
+.save__btn, .note__btn, .delete__btn, .shop_tops, .shop_bottoms, .shop_sets, .button, .save_new_note_button{
+
+    background-color:#33137D;
+    color: beige;
+    border: beige;
+    font-size: 30px;
+    justify-content: center;
+    border: 1px solid beige;
+    height:40px;
+    width:160px;
+    
+}
+
+.fav__btn {
+
+    background-color:#33137D;
+    color: beige;
+    border: beige;
+    font-size: 20px;
+    justify-content: center;
+    border: 1px solid beige;
+    height:40px;
+    width:160px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all;
+}
+
+
+.fav__btn:active {
+    transform: scale(0.80);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+    background-color:red;
+
+}
+
+.is_favorite{
+    background-color: red;
+}
+
+.piece__image {
+    border-radius: 8px;
+    border: beige;
+    height:300px;
+    width:300px;
+    border: 2px solid #33137D;
+    
+}
+
+.piece__detail {
+    display: inline-block;
+    font-weight: bold;
+    
+}
+
+.shop__pieces, .pieces__saved,.tops{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+	justify-content: space-between;
+   
+      
+}

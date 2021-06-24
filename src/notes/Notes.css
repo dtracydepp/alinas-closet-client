@@ -1,0 +1,11 @@
+.save__btn, .note__btn, .delete__btn, .shop_tops, .shop_bottoms, .shop_sets, .button, .save_new_note_button{
+
+    background-color:#33137D;
+    color: beige;
+    border: beige;
+    font-size: 16px;
+    justify-content: center;
+    border: 1px solid beige;
+    
+    
+}

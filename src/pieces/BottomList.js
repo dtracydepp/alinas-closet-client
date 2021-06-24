@@ -23,7 +23,7 @@ export const BottomList = () => {
 
   return (
     <div className="tops">
-      <h3>Bottoms</h3>
+      <h2>Bottoms</h2>
       {
         pieces.map(piece => {
           if (piece.category.id === 2) {

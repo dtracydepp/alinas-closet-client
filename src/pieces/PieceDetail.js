@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react"
 import { UserPieceContext } from "../users/UserPieceProvider.js"
 import { PieceContext } from "./PieceProvider.js"
 import { useParams, useHistory } from "react-router-dom"
+import "./Pieces.css"
+
 
 export const PieceDetail = () => {
 
@@ -46,11 +48,13 @@ export const PieceDetail = () => {
   return (
     <section className="piece">
       <h1> About This Piece</h1>
-      <img src= {piece.imageurl} alt=""/>
       <h3 className="piece__name">{piece.piece_name}</h3>
+      <img src= {piece.imageurl} alt=""/>
+      <section className="piece__detail">
       <div className="piece__price">Price: ${piece.price}</div>
       <div className="piece__size">Size: {piece.size}</div>
       <div className="piece__retailer">Retailer: {piece.retailer?.retailer_name}</div>
+      </section>
       {/* POST method in piece provider, handleSave function */}
       <div>
       <button className="save__btn" onClick={()=>handleClickSavePiece()}>

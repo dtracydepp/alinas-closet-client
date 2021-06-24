@@ -23,7 +23,7 @@ export const Shop = () => {
 
     return (
         <>
-            <div>
+            <div className = "shop__pieces">
               <h2>Shop Tops</h2>
               <button className="shop_tops"
             // pushes the new entry into the history stack---redirecting to another route
@@ -43,8 +43,9 @@ export const Shop = () => {
            
             </div>
 
-            <div>
+            <div className = "shop__pieces">
               <h2>Shop Bottoms</h2>
+          
               <button className="shop_bottoms"
             // pushes the new entry into the history stack---redirecting to another route
                 onClick={() => history.push("/bottoms")}>
@@ -63,7 +64,8 @@ export const Shop = () => {
            
             </div>
 
-            <div>
+            
+            <div className = "shop__pieces">
               <h2>Shop Sets</h2>
               <button className="shop_sets"
             // pushes the new entry into the history stack---redirecting to another route

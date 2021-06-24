@@ -3,11 +3,12 @@ import { UserPieceContext } from "../users/UserPieceProvider.js"
 import { PieceContext } from "./PieceProvider.js" 
 import {PieceCard} from "./PieceCard.js"
 import { useParams, useHistory } from "react-router-dom"
+import "./Pieces.css"
 
 
 export const SavedPieceList = () => {
 
-    const { userpieces, getUserPieces, getUserPiecesById, deleteSavedPiece, updateUserPiece} = useContext(UserPieceContext)
+    const { userpieces, getUserPieces, getUserPiecesById, deleteSavedPiece, favUserPiece} = useContext(UserPieceContext)
     const { getPiecesById } = useContext(PieceContext)
     // not sure if I need pieces, getPieces or userpieces or both??
     const history = useHistory()
@@ -37,11 +38,11 @@ export const SavedPieceList = () => {
 
     // function to fav userpiece
 
-    const handleFav = (userpiecesId,piece) => {
+    const handleFav = (userpiecesId,piece,userpiece) => {
         if (userpiecesId) {
           //PUT - update
-          updateUserPiece({
-                "note":"",
+          favUserPiece({
+                "note": userpiece.note,
                 "id": userpiecesId,
                 "is_favorite": true,
                 "piece": piece,
@@ -70,7 +71,7 @@ export const SavedPieceList = () => {
                 <PieceCard key={up.piece.id} piece={up.piece} />
 
                 <div>
-                    <button className="fav__btn" onClick={()=>handleFav(up.id,up.piece.id)}> 
+                    <button className={up.is_favorite?'is_favorite fav__btn':'fav__btn'} onClick={()=>handleFav(up.id,up.piece.id,up)}> ♥ 
                         Favorite
                     </button>
                 </div>
@@ -94,7 +95,7 @@ export const SavedPieceList = () => {
 
         )
     })
-    return (<div> <h1>Saved Pieces</h1>
+    return (<div className="pieces__saved"> <h1>Saved Pieces{currentUserSavedPieces.count}</h1>
         {currentUserSavedPieces}</div>)
 
         

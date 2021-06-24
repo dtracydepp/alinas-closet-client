@@ -2,6 +2,7 @@
 
 import React from "react"
 import { Link } from "react-router-dom"
+import "./Pieces.css"
 
 
 
@@ -12,7 +13,7 @@ export const PieceCard = ({ piece }) => ((
             {piece.piece_name}
             </Link>
            </h3> 
-        <img src= {piece.imageurl} alt=""/>
+        <img className="piece__image" src= {piece.imageurl} alt=""/>
     </section>
 ) 
 )
