@@ -10,7 +10,8 @@ import { PieceDetail } from "./pieces/PieceDetail.js"
 import { SavedPieceList } from "./pieces/SavedPieces.js"
 import { UserPieceProvider } from "./users/UserPieceProvider.js"
 import { NoteForm } from "./notes/NoteForm.js"
-
+import {LookList} from "./looks/LookList.js"
+import {ShoppingList} from "./lists/ShoppingList.js"
 
 
 
@@ -43,6 +44,13 @@ export const ApplicationViews = () => {
                   <SetList />
                </Route>
 
+               <Route path="/looks">
+                  <LookList />
+               </Route>
+
+               <Route path="/lists">
+                  <ShoppingList />
+               </Route>
 
                <Route path="/saved">
                   <SavedPieceList />

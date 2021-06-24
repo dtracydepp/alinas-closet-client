@@ -23,7 +23,7 @@ export const SetList = () => {
 
   return (
     <div className="tops">
-      <h3>Sets</h3>
+      <h2>Sets</h2>
       {
         pieces.map(piece => {
           if (piece.category.id === 3) {

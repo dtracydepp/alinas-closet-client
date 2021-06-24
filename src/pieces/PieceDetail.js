@@ -50,9 +50,11 @@ export const PieceDetail = () => {
       <h1> About This Piece</h1>
       <h3 className="piece__name">{piece.piece_name}</h3>
       <img src= {piece.imageurl} alt=""/>
+      <section className="piece__detail">
       <div className="piece__price">Price: ${piece.price}</div>
       <div className="piece__size">Size: {piece.size}</div>
       <div className="piece__retailer">Retailer: {piece.retailer?.retailer_name}</div>
+      </section>
       {/* POST method in piece provider, handleSave function */}
       <div>
       <button className="save__btn" onClick={()=>handleClickSavePiece()}>
